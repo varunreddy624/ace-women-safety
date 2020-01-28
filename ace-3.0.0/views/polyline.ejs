@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom Markers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    function initMap() {
+        var map = new google.maps.Map(
+            document.getElementById('map'),
+            {center: new google.maps.LatLng(17.3957847,78.4311944), zoom: 16});
+            var a=[];
+            var iconBase = './assets/icons/';
+            <% for(var i=0;i<p.length;i++) { %>
+              var marker = new google.maps.Marker({
+                position:  new google.maps.LatLng(<%= p[i].lat %>,<%= p[i].lng %>),
+                icon: iconBase+<%= p[i].cr %>+".png",
+                map: map
+              });
+            <% } %>
+            <% for(var i=0;i<d.length;i++) { %>
+              a.push({lat:<%= d[i].lat %>,lng:<%= d[i].lng %>});
+            <% } %>
+          var flightPath = new google.maps.Polyline({
+          path: a,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        flightPath.setMap(map);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUA7HInId-aYWjxMz_U1MjeyCTPDlV_5I&callback=initMap">
+    </script>
+    </body>
+</html>
