@@ -18,8 +18,7 @@ module.exports=function(app){
       if(err) throw err;
       else
       {
-        var a = JSON.stringify(data);
-        res.render('map',{p:a});
+        res.render('map',{ p:data});
       }
     });
   });
