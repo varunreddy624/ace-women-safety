@@ -24,14 +24,27 @@
             {center: new google.maps.LatLng(17.3957847,78.4311944), zoom: 16});
 
         var iconBase = './assets/icons/';
-        var i=0;
         <% for(var i=0;i<p.length;i++) { %>
+          <% if (i==0) { console.log(i);%>
+            var marker = new google.maps.Marker({
+              position:  new google.maps.LatLng(<%= p[i].lat %>,<%= p[i].lng %>),
+              icon: iconBase+"1.png",
+              map: map
+            });
+          <%} else if(i!=p.length-1) { %>
           var marker = new google.maps.Marker({
             position:  new google.maps.LatLng(<%= p[i].lat %>,<%= p[i].lng %>),
             icon: iconBase+<%= p[i].cr %>+".png",
             map: map
           });
-          <% } %>
+          <% } else {%>
+          var marker = new google.maps.Marker({
+            position:  new google.maps.LatLng(<%= p[i].lat %>,<%= p[i].lng %>),
+            icon: iconBase+"2.png",
+            map: map
+          });
+         <% } %>
+       <% } %>
       }
     </script>
     <script async defer

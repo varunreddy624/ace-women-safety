@@ -75,7 +75,14 @@ module.exports=async function(app){
               console.log('\n');
                 l.legs[0].steps.forEach((m, j) => {
                     geocoder.reverse({lat:m.end_location["lat"],lon:m.end_location["lng"]}, function(err, res) {
-                      var cr= (Math.floor(Math.random() *11 ) + i*10).toString();
+                    var k
+                      if (i==2)
+                        k=0;
+                      else if (i==0)
+                        k=2;
+                      else
+                        k=i;
+                      var cr= (Math.floor(Math.random() *11 ) + k*10).toString();
                       var f = {lat:m.end_location["lat"],lng:m.end_location["lng"],cr:cr,desc:res[0].extra.neighborhood};
                       console.log(f);
                       var newcs = cs(f).save();

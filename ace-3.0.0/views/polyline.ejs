@@ -25,12 +25,26 @@
             var a=[];
             var iconBase = './assets/icons/';
             <% for(var i=0;i<p.length;i++) { %>
+              <% if (i==0) { console.log(i);%>
+                var marker = new google.maps.Marker({
+                  position:  new google.maps.LatLng(<%= d[0].lat %>,<%= d[0].lng %>),
+                  icon: iconBase+"start.png",
+                  map: map
+                });
+              <%} else if(i!=p.length-1) { %>
               var marker = new google.maps.Marker({
                 position:  new google.maps.LatLng(<%= p[i].lat %>,<%= p[i].lng %>),
                 icon: iconBase+<%= p[i].cr %>+".png",
                 map: map
               });
-            <% } %>
+              <% } else {%>
+              var marker = new google.maps.Marker({
+                position:  new google.maps.LatLng(<%= d[d.length-1].lat %>,<%= d[d.length-1].lng %>),
+                icon: iconBase+"dest.png",
+                map: map
+              });
+             <% } %>
+           <% } %>
             <% for(var i=0;i<d.length;i++) { %>
               a.push({lat:<%= d[i].lat %>,lng:<%= d[i].lng %>});
             <% } %>
