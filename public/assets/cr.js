@@ -5,7 +5,7 @@ $(document).ready(function(){
         var x = nl.val().replace(/\s/g,"+");
         var ss = x+"+"+city.val();
         var cr = $('#cr');
-        var uri = `https://maps.googleapis.com/maps/api/geocode/json?address=${ss}&key=AIzaSyDUA7HInId-aYWjxMz_U1MjeyCTPDlV_5I`;
+        var uri = `https://maps.googleapis.com/maps/api/geocode/json?address=${ss}&key=xxxxxxxxxxxxx`;
         $.ajax({
           type: 'POST',
           url: uri,
